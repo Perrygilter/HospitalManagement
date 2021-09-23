@@ -27,7 +27,7 @@ void welcome()
 void title()
 {
 
-    printf("\t\t\t\t\t     ISEKAI HOSPITAL\n");
+    printf("\t\t\t\t\t     CENTRAL HOSPITAL\n");
 }
 
 void mainscreen()
@@ -103,8 +103,6 @@ void addrecord()
 
     int check = 1;
 
-
-
     printf("\n\t- ADD PATIENTS RECORD-\t\n ");
 
     while (check)
@@ -133,6 +131,8 @@ void addrecord()
 
         fflush(stdin);
         displayspecialist(num);
+
+        clrscr();
 
         printf("do you want to add more(1:yes, 0:no): ");
         scanf("%d", &check);
@@ -227,20 +227,20 @@ void edit()
 void search()
 {
     int s;
-    
+
     printf("enter serial number of the patient: ");
     scanf("%d", &s);
     s--;
     if (s <= num)
     {
         printf("\n");
-        printf("seri num:            %d\n", s + 1);
-        printf("name                = ");
+        printf("seri num:           =                 %d\n", s + 1);
+        printf("name                =                 ");
         puts(patientrecord[s].name);
-        printf("gender              = ");
+        printf("gender              =                 ");
         puts(patientrecord[s].gender);
-        printf("age= %d\n", patientrecord[s].age);
-        printf("contact             =");
+        printf("age                 =                 %d\n", patientrecord[s].age);
+        printf("contact             =                 ");
         puts(patientrecord[s].contact);
         printf("problem and room no =");
         puts(patientrecord[s].problem);
@@ -327,7 +327,7 @@ void traitim(int n)
 void thank()
 {
 
-    printf("!!!!!!!!!!!!!!!!!!!!!!! THANK YOU FOR USING OUR SERVICES !!!!!!!!!!!!!!!!!!!!!!");
+    printf("!!!!!!!!!!!!!!!!!!!!!!! THANK YOU FOR USING OUR SERVICES !!!!!!!!!!!!!!!!!!!!!!\n\n");
 
     traitim(10);
 }
@@ -336,22 +336,19 @@ void write()
 {
     FILE *fptr;
     fptr = fopen("name_list.txt", "w");
-    if (fptr == NULL)
-    {
-        printf("file does not exist");
-        exit(1);
-    }
+    
+    
     for (int i = 0; i < num; i++)
     {
 
-        printf("%7d|", i);
+        fprintf(fptr,"%d|", i+1);
 
-        printf("%15s|", patientrecord[i].name);
-        printf("%12s|", patientrecord[i].gender);
-        printf("%9d|", patientrecord[i].age);
-        printf("%14s|", patientrecord[i].contact);
-        printf("%27s|", patientrecord[i].problem);
-        printf("\n");
+        fprintf(fptr,"%s|", patientrecord[i].name);
+        fprintf(fptr,"%s|", patientrecord[i].gender);
+        fprintf(fptr,"%d|", patientrecord[i].age);
+        fprintf(fptr,"%s|", patientrecord[i].contact);
+        fprintf(fptr,"%s|", patientrecord[i].problem);
+        fprintf(fptr,"\n");
     }
 
     fclose(fptr);

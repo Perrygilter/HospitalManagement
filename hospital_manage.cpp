@@ -45,17 +45,18 @@ int main()
             break;
         case 6:
             clrscr();
-            thank();
-            mainscreen();
+            welcome();
             break;
         default:
             printf("Invalid input");
             break;
         }
-        printf("Do you want to continue(1:yes)(0:no): ");
+        printf("\nDo you want to continue(1:yes)(0:no): ");
         scanf("%d", &check);
+        clrscr();
         if (check == 0)
         {
+            clrscr();
             thank();
         }
     }
